@@ -1,0 +1,21 @@
+{
+  "name": "image-extractor",
+  "version": "1.0.0",
+  "description": "Extract a thumbnail image from a web page.",
+  "main": "index.js",
+  "scripts": {
+    "start": "micro",
+    "debug": "node inspect node_modules/.bin/micro -p 3000",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Weiran Zhang (weiran@zhang.me.uk)",
+  "license": "ISC",
+  "dependencies": {
+    "image-resolver": "^0.6.1",
+    "micro": "^9.0.2",
+    "node-fetch": "^1.7.3"
+  },
+  "devDependencies": {
+    "eslint": "^4.13.1"
+  }
+}
