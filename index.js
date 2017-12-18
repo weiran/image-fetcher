@@ -19,11 +19,11 @@ module.exports = async (request, response) => {
         return
     }
 
-    var resolver = new ImageResolver();
-    resolver.register(new ImageResolver.FileExtension());
-    resolver.register(new ImageResolver.MimeType());
-    resolver.register(new ImageResolver.Opengraph());
-    resolver.register(new ImageResolver.Webpage());
+    var resolver = new ImageResolver()
+    resolver.register(new ImageResolver.FileExtension())
+    resolver.register(new ImageResolver.MimeType())
+    resolver.register(new ImageResolver.Opengraph())
+    resolver.register(new ImageResolver.Webpage())
 
     resolver.resolve(url, function(result) {
         if (result) {
