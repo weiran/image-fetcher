@@ -11,8 +11,8 @@ module.exports = async (request, response) => {
     }
 
     const headerRequest = await fetch(url, { method: 'HEAD' })
-    const contentType = await headerRequest.headers["_headers"]["content-type"][0]
-    const isHtml = contentType.includes("text/html")
+    const contentType = await headerRequest.headers['_headers']['content-type'][0]
+    const isHtml = contentType.includes('text/html')
     if (!isHtml) {
         response.writeHead(404)
         response.end()
@@ -27,7 +27,7 @@ module.exports = async (request, response) => {
 
     resolver.resolve(url, function(result) {
         if (result) {
-            response.writeHead(301, { "Location": result.image })
+            response.writeHead(301, { 'Location': result.image })
             response.end()
         } else {
             response.writeHead(404)
