@@ -6,7 +6,7 @@
   "scripts": {
     "start": "micro",
     "debug": "node inspect node_modules/.bin/micro -p 3000",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "eslint **/*.js"
   },
   "author": "Weiran Zhang (weiran@zhang.me.uk)",
   "license": "ISC",
