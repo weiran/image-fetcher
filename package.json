@@ -12,10 +12,10 @@
   "license": "ISC",
   "dependencies": {
     "image-resolver": "^0.6.1",
-    "micro": "^9.3.3",
-    "node-fetch": "^1.7.3"
+    "micro": "^9.3.4",
+    "node-fetch": "^2.6.0"
   },
   "devDependencies": {
-    "eslint": "^4.19.1"
+    "eslint": "^5.16.0"
   }
 }
