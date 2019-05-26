@@ -11,7 +11,7 @@ module.exports = async (request, response) => {
     }
 
     const headerRequest = await fetch(url, { method: 'HEAD' })
-    const contentType = await headerRequest.headers['_headers']['content-type'][0]
+    const contentType = await headerRequest.headers.get('content-type')
     const isHtml = contentType.includes('text/html')
     if (!isHtml) {
         response.writeHead(404)
