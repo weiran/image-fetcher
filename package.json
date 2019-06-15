@@ -1,6 +1,6 @@
 {
   "name": "image-extractor",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Extract a thumbnail image from a web page.",
   "main": "index.js",
   "scripts": {
@@ -11,9 +11,8 @@
   "author": "Weiran Zhang (weiran@zhang.me.uk)",
   "license": "ISC",
   "dependencies": {
-    "image-resolver": "^0.6.1",
-    "micro": "^9.3.4",
-    "node-fetch": "^2.6.0"
+    "get-website-favicon": "0.0.7",
+    "micro": "^9.3.4"
   },
   "devDependencies": {
     "eslint": "^5.16.0"
