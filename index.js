@@ -1,5 +1,6 @@
-const fetch = require('node-fetch')
-const ImageResolver = require('image-resolver')
+const getFavIcon = require('get-website-favicon')
+
+const sizeOrder = ['192x192', '180x180', '167x167', '152x152', '128x128', '120x120', '76x76', '57x57']
 
 module.exports = async (request, response) => {
     const query = require('url').parse(request.url, true).query
@@ -10,28 +11,34 @@ module.exports = async (request, response) => {
         return
     }
 
-    const headerRequest = await fetch(url, { method: 'HEAD' })
-    const contentType = await headerRequest.headers.get('content-type')
-    const isHtml = contentType.includes('text/html')
-    if (!isHtml) {
-        response.writeHead(404)
-        response.end()
-        return
-    }
+    getFavIcon(url).then(data => {
+        let iconUrl
+        const rankedIcons = data.icons.sort(icon => icon.rank)
 
-    var resolver = new ImageResolver()
-    resolver.register(new ImageResolver.FileExtension())
-    resolver.register(new ImageResolver.MimeType())
-    resolver.register(new ImageResolver.Opengraph())
-    resolver.register(new ImageResolver.Webpage())
+        // look for largest sizes first
+        for (let size of sizeOrder) {
+            const icon = rankedIcons.find(item => item.sizes == size)
+            if (icon) {
+                iconUrl = icon.src
+                break
+            }
+        }
 
-    resolver.resolve(url, function(result) {
-        if (result) {
-            response.writeHead(301, { 'Location': result.image })
-            response.end()
+        // then look for top ranked icons
+        if (!iconUrl) {
+            for (let icon of rankedIcons) {
+                if (icon.src) {
+                    iconUrl = icon.src
+                    break
+                }
+            }
+        }
+
+        if (iconUrl) {
+            response.writeHead(301, { 'Location': iconUrl })
         } else {
             response.writeHead(404)
-            response.end()
         }
+        response.end()
     })
 }
