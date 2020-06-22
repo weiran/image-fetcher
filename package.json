@@ -4,7 +4,7 @@
   "description": "Extract a thumbnail image from a web page.",
   "main": "index.js",
   "scripts": {
-    "start": "micro",
+    "start": "micro -l tcp://0.0.0.0:$PORT",
     "debug": "node inspect node_modules/.bin/micro -p 3000",
     "test": "eslint **/*.js"
   },
